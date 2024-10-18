@@ -12,16 +12,15 @@ use crate::io::controller::get_io_and_presenter;
 use crate::io::presenter::Present;
 use crate::io::reader::AsyncLineReader;
 use crate::io::writer::AsyncLineWriter;
-use color_eyre::eyre::Result;
 use highlighter::groups;
 use inlet_manifold::Highlighter;
+use miette::Result;
 use rayon::iter::IntoParallelIterator;
 use theme::reader;
 use tokio::sync::oneshot;
 
 #[tokio::main]
 async fn main() -> Result<()> {
-    color_eyre::install()?;
     completions::generate_shell_completions_or_continue();
 
     let cli = Cli::parse();
